@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This is a documentation/research repo (no code, no build). It demonstrates and
-investigates three things about Docker Sandboxes (`sbx`) — see `docs/goals.md` for the
-canonical statement of each goal:
+This repo is primarily documentation/research, plus one buildable demo (goal 4). It
+demonstrates and investigates four things about Docker Sandboxes (`sbx`) — see
+`docs/goals.md` for the canonical statement of each goal:
 
 1. **`specs/remote-mcp-gateways/`** — using remote MCP gateways other than Docker's own,
    specifically Cloudflare; pass-through auth vs. Dynamic Client Registration (DCR).
@@ -15,6 +15,12 @@ canonical statement of each goal:
    across that hand-off.
 3. **`specs/local-mcp-cedar-policies/`** — Docker Sandboxes' Cedar-based MCP governance:
    controlling tool access and restricting plugin/MCP additions from within a sandbox.
+4. **`specs/sandbox-webapp-devloop/`** — an end-to-end demo: an agent inside a Docker
+   Sandbox builds and runs a simple self-hosted Python web app, with Playwright as a
+   local MCP server (`sbx mcp add`) for visual verification, declarative port forwarding
+   for host visibility, and a boot-time hook that launches the dev server with live
+   reload. Unlike goals 1–3, this folder's output is a runnable project (app code,
+   `sbxenv.yaml`, a kit), not only a `RESEARCH.md` — see its `PLAN.md` for the outline.
 
 Each goal has its own folder under `specs/`, matching the numbered list above 1:1. The
 folder names don't literally match the goal wording in `docs/goals.md` — check this
@@ -22,8 +28,11 @@ mapping before creating a new folder for what might already be covered ground.
 
 ## Research conventions
 
-Each `specs/<goal>/RESEARCH.md` is the running, factual write-up for that goal. When
-extending or updating this research:
+Each `specs/<goal>/RESEARCH.md` is the running, factual write-up for that goal. Goal 4 is
+the exception: `specs/sandbox-webapp-devloop/` carries a `PLAN.md`/`SPEC.md` plus actual
+project files instead of a `RESEARCH.md`, since its deliverable is a runnable demo — but
+every factual claim in those docs about Docker Sandboxes behavior still follows the same
+citation discipline below. When extending or updating this research:
 
 - **Public sources only.** Cite only publicly accessible documentation (official vendor
   docs, public GitHub repos/issues, public specs). Never include information that is
@@ -45,10 +54,12 @@ extending or updating this research:
 ## Structure
 
 ```
-docs/goals.md                              # canonical statement of the three repo goals
+docs/goals.md                              # canonical statement of the four repo goals
 specs/remote-mcp-gateways/RESEARCH.md
 specs/cloud-handoff/RESEARCH.md
 specs/local-mcp-cedar-policies/RESEARCH.md
+specs/sandbox-webapp-devloop/PLAN.md       # goal 4: planning doc; SPEC.md + app code follow
 ```
 
-No build, lint, or test tooling exists in this repo — there is no code to run.
+No build, lint, or test tooling exists for goals 1–3 — there is no code to run there.
+Goal 4 will eventually contain a runnable Python web app; see its `PLAN.md`.
