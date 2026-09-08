@@ -1,0 +1,12 @@
+ports:
+  - sandbox: 8000
+    host: 8000
+
+mcp:
+  servers:
+    - name: playwright
+      command: npx
+      args: ["-y", "@playwright/mcp@latest"]
+
+kits:
+  - ./kit

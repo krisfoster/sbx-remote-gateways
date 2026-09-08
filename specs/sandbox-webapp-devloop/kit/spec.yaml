@@ -1,0 +1,8 @@
+kind: mixin
+name: goal-4-dev-server
+
+setup:
+  startup:
+    - command: ["sh", "-c", "cd /workspace/app && flask --app app.py run --host=0.0.0.0 --port=8000 --debug"]
+      background: true
+      description: "Start the Flask dev server (debug/live-reload) for the goal 4 hello-world app"
